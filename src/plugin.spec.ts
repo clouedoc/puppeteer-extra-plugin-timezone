@@ -1,14 +1,18 @@
+import { Browser } from "puppeteer"
 import puppeteer from "puppeteer-extra"
 import TimezonePlugin from "./plugin"
 
-puppeteer.use(TimezonePlugin())
-
 jest.setTimeout(50000)
 
-it("emulates the given timezone", async () => {
-  const browser = await puppeteer.launch({
-    headless: false
-  })
+const TEST_PROXY_SERVER = "45.95.96.187:8746"
+
+async function isStealth(browser?: Browser) {
+  if (!browser) {
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ["--proxy-server=" + TEST_PROXY_SERVER]
+    })
+  }
 
   const page = await browser.newPage()
 
@@ -28,6 +32,30 @@ it("emulates the given timezone", async () => {
   ])
 
   await browser.close()
+  return stealth
+}
 
-  expect(stealth).toBe(true)
+it("isn't stealth when not using the timezone plugin (use a VPN!)", async () => {
+  await expect(isStealth()).resolves.toBe(false)
+})
+
+it("emulates the right timezone for the current IP", async () => {
+  puppeteer.use(TimezonePlugin())
+  await expect(isStealth()).resolves.toBe(true)
+})
+
+it("emulates the right timezone for multiple browsers concurrently", async () => {
+  const proxyBrowser = await puppeteer.launch({
+    headless: true,
+    args: ["--proxy-server=45.95.96.187:8746"]
+  })
+
+  const normalBrowser = await puppeteer.launch({
+    headless: true
+  })
+
+  // the second browser opening should have overidden the timezone context of the first
+  await expect(isStealth(proxyBrowser)).resolves.toBe(true)
+
+  await Promise.all([proxyBrowser.close(), normalBrowser.close()])
 })
