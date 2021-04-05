@@ -18,3 +18,16 @@ export const LumResponseSchema = z.object({
     tz: z.string()
   })
 })
+
+/**
+ * @see https://chromedevtools.github.io/devtools-protocol/tot/Target/#method-getTargetInfo
+ */
+export const TargetInfoSchema = z.object({
+  targetInfo: z
+    .object({
+      targetId: z.string(),
+      type: z.string().refine((type) => type === "browser"),
+      attached: z.boolean().refine((attached) => attached === true)
+    })
+    .nonstrict()
+})
