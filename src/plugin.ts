@@ -81,7 +81,7 @@ export class TimezonePlugin
         this.ctx
       )
     } catch (err) {
-      this.debug(`Error getting timezone for page: ${err.message}`)
+      this.debug(`Error getting timezone for ip: ${err.message}`)
       this.debug(err.stack ?? err)
     }
   }
@@ -106,7 +106,9 @@ export class TimezonePlugin
         )
       }
     } catch (err) {
-      this.debug(`Error getting timezone for page: ${err.message}`)
+      this.debug(
+        `Error emulating timezone for page (${page.url()}): ${err.message}`
+      )
       this.debug(err.stack ?? err)
     }
   }
