@@ -1,7 +1,7 @@
 {
   "name": "puppeteer-extra-plugin-timezone",
   "version": "1.0.0",
-  "description": "A puppeteer-extra plugin to automatically select the appropriate timezone.",
+  "description": "A puppeteer-extra plugin to automatically emulate the appropriate timezones using IP reflection services.",
   "repository": "https://github.com/clouedoc/puppeteer-extra-plugin-timezone",
   "license": "MIT",
   "author": "Camille Louédoc <camille.eyries@gmail.com>",
