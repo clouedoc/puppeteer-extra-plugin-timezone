@@ -5,6 +5,7 @@ export * from "./types"
 export * from "./provider"
 export * from "./plugin"
 export * from "./constants"
+export * from "./exceptions"
 
 /**
  * Export plugin factory as default export.
