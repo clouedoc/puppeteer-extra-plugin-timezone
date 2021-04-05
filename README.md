@@ -1,7 +1,5 @@
 # puppeteer-extra-plugin-timezone
 
-**Warning: this does not work !**
-
 Sets the correct timezone based in IP geolocation for each page that opens.
 
 Once a page is opened:
@@ -32,19 +30,6 @@ See the core Puppeteer-Extra Plugin docs for additional information:
 
 1. You need to add a proxy server IP in `src/constants.ts`
 2. You can run the tests using `DEBUG=puppeteer-extra-plugin:timezone yarn test` or `DEBUG=puppeteer-extra-plugin:timezone npm test`.
-
-## Why isn't it working? Can I help?
-
-`puppeteer-extra` allows us to listen for page creation events, but it does not block them from navigating.
-It means that we can't fetch the correct timezone using the page. However, there is no way to know this timezone _(in a proxy usage setting)_.
-Any help is appreciated.
-
-Hypothetical ways to make it work:
-
-1. Ask the user to specify the timezone for each page (lame).
-2. Find a way to fetch the timezone another way than using Lumtest and asynchronously set the correct timezone
-    - Drawback: it might load the target page before it has the correct timezone set...
-3. Emulate the timezone at the Browser level ?
 
 **This package is still left for reference, but it won't work!**
 
