@@ -60,7 +60,7 @@ export class TimezonePlugin
 }
 
 /**
- * Export plugin as default export.
+ * Export plugin factory as default export.
  * @return {TimezonePlugin}
  */
 export default () => new TimezonePlugin()
