@@ -2,7 +2,7 @@
 
 **Warning: this does not work !**
 
-Sets the correct timezone for every pages that opens.
+Sets the correct timezone based in IP geolocation for each page that opens.
 
 Once a page is opened:
 
@@ -23,15 +23,22 @@ await page.goto('https://whoer.net')
 // Congratulations, it should now emulate the correct timezone !
 ```
 
+
+### Base Puppeteer-Extra Plugin System
+See the core Puppeteer-Extra Plugin docs for additional information:
+https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin
+
+
+
 ## Testing
 
-1. The tests should be ran using a VPN set to whatever location far away from yours.
+1. The tests should be run connected via proxy or VPN. _(TODO: Create mocks and stubs for offline tests.)_
 2. You can run the tests using `DEBUG=puppeteer-extra-plugin:timezone yarn test` or `DEBUG=puppeteer-extra-plugin:timezone npm test`.
 
 ## Why isn't it working? Can I help?
 
 `puppeteer-extra` allows us to listen for page creation events, but it does not block them from navigating.
-It means that we can't fetch the correct timezone using the page. However, there is no way to know this timezone (in a proxy usage setting).
+It means that we can't fetch the correct timezone using the page. However, there is no way to know this timezone _(in a proxy usage setting)_.
 Any help is appreciated.
 
 Hypothetical ways to make it work:
@@ -62,7 +69,8 @@ What will be needed:
 
 MIT
 
-## Ressources
+## Resources
 
-- [Puppteer documentation](https://pptr.dev)
+- [Puppeteer documentation](https://pptr.dev)
+- [Puppeteer-Extra plugin documentation](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin)
 - [CDP documentation](https://chromedevtools.github.io/devtools-protocol/)
