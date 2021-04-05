@@ -3,12 +3,9 @@
     "allowSyntheticDefaultImports": false,
     "declaration": true,
     "emitDecoratorMetadata": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "lib": [
-      "ES2017",
-      "DOM"
-    ],
+    "lib": ["ES2017", "DOM"],
     "module": "ES2015",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
@@ -24,11 +21,6 @@
     "stripInternal": true,
     "target": "ES2017"
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "lib",
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["lib", "node_modules"]
 }
