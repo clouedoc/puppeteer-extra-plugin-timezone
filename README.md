@@ -7,7 +7,15 @@ Once a page is opened:
 1. Fetch the right timezone for the given page using [Lumtest](https://lumtest.com/myip.json)
 2. Sets the correct timezone using `page.emulateTimezone(...)`
 
-Warning: for ips where timezone can't be detected, a warning will be thrown using the standard `puppeteer-extra` logger.
+For IPs where the timezone can't be detected, a warning will be thrown using the standard `puppeteer-extra` logger.
+
+## Installation
+
+```bash
+yarn add puppeteer-extra-plugin-timezone
+# or
+npm install puppeteer-extra-plugin-timezone
+```
 
 ## Usage
 
@@ -29,9 +37,13 @@ See the core Puppeteer-Extra Plugin docs for additional information:
 ## Testing
 
 1. You need to add a proxy server IP in `src/constants.ts`
-2. You can run the tests using `DEBUG=puppeteer-extra-plugin:timezone yarn test` or `DEBUG=puppeteer-extra-plugin:timezone npm test`.
+2. You can run the tests using either `yarn test` or `npm test`.
 
-**This package is still left for reference, but it won't work!**
+## Debugging
+
+You can see the package's logs by setting the `DEBUG=puppeteer-extra-plugin:timezone` env variable.
+
+Example: `DEBUG=puppeteer-extra-plugin:timezone npm test`
 
 ## Contributing
 
