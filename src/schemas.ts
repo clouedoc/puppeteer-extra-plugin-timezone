@@ -20,14 +20,16 @@ export const LumResponseSchema = z.object({
 })
 
 /**
+ * Define the shape expected to be returned by CDP when querying target id.
  * @see https://chromedevtools.github.io/devtools-protocol/tot/Target/#method-getTargetInfo
+ * @type {z.ZodObject}
  */
 export const TargetInfoSchema = z.object({
   targetInfo: z
     .object({
       targetId: z.string(),
-      type: z.string().refine((type) => type === "browser"),
-      attached: z.boolean().refine((attached) => attached === true)
+      type: z.string().refine((type: string) => type === "browser"),
+      attached: z.boolean().refine((attached: boolean) => attached)
     })
     .nonstrict()
 })
