@@ -23,16 +23,14 @@ await page.goto('https://whoer.net')
 // Congratulations, it should now emulate the correct timezone !
 ```
 
-
 ### Base Puppeteer-Extra Plugin System
+
 See the core Puppeteer-Extra Plugin docs for additional information:
-https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin
-
-
+<https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin>
 
 ## Testing
 
-1. The tests should be run connected via proxy or VPN. _(TODO: Create mocks and stubs for offline tests.)_
+1. You need to add a proxy server IP in `src/constants.ts`
 2. You can run the tests using `DEBUG=puppeteer-extra-plugin:timezone yarn test` or `DEBUG=puppeteer-extra-plugin:timezone npm test`.
 
 ## Why isn't it working? Can I help?
@@ -54,16 +52,16 @@ Hypothetical ways to make it work:
 
 We appreciate all contributions.
 
-What's needed right now:
+What's needed:
 
-- [ ] Make it work somehow
-
-What will be needed:
-
-- [ ] Specifying a default fallback timezone
 - [ ] Get timezone from other fallback iptest websites
 - [ ] Set default timezone on a page basis (when executing `browser.newPage()`)
-- [ ] Sticky per-browser timezone (save the timezone for each browser to avoid unnecessary calls to Lumtest)
+
+Done:
+
+- [x] Make it work somehow *(prescience)*
+- [x] Specifying a default fallback timezone *(prescience)*
+- [x] Sticky per-browser timezone (save the timezone for each browser to avoid unnecessary calls to Lumtest)
 
 ## License
 
