@@ -13,7 +13,7 @@
     "lib/index.d.ts"
   ],
   "scripts": {
-    "test": "yarn jest --watch"
+    "test": "yarn jest --watchAll"
   },
   "dependencies": {
     "puppeteer-extra-plugin": "^3.1.9",
