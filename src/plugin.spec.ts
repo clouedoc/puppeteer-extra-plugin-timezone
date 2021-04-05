@@ -1,16 +1,15 @@
 import { Browser } from "puppeteer"
 import puppeteer from "puppeteer-extra"
+import { TESTING_PROXY_SERVER } from "./constants"
 import TimezonePlugin from "./plugin"
 
 jest.setTimeout(50000)
-
-const TEST_PROXY_SERVER = "45.95.96.187:8746"
 
 async function isStealth(browser?: Browser) {
   if (!browser) {
     browser = await puppeteer.launch({
       headless: true,
-      args: ["--proxy-server=" + TEST_PROXY_SERVER]
+      args: ["--proxy-server=" + TESTING_PROXY_SERVER]
     })
   }
 
@@ -35,7 +34,7 @@ async function isStealth(browser?: Browser) {
   return stealth
 }
 
-it("isn't stealth when not using the timezone plugin (use a VPN!)", async () => {
+it("isn't stealth when not using the timezone plugin", async () => {
   await expect(isStealth()).resolves.toBe(false)
 })
 
@@ -47,7 +46,7 @@ it("emulates the right timezone for the current IP", async () => {
 it("emulates the right timezone for multiple browsers concurrently", async () => {
   const proxyBrowser = await puppeteer.launch({
     headless: true,
-    args: ["--proxy-server=45.95.96.187:8746"]
+    args: ["--proxy-server=" + TESTING_PROXY_SERVER]
   })
 
   const normalBrowser = await puppeteer.launch({
