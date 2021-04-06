@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "lib": ["ES2017", "DOM"],
-    "module": "ES2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": false,
