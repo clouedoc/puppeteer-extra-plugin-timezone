@@ -2,6 +2,8 @@ import { PluginOptions } from "puppeteer-extra-plugin"
 import { z } from "zod"
 import { LumResponseSchema } from "./schemas"
 
+export type BrowserId = string
+
 export type LumResponse = z.infer<typeof LumResponseSchema>
 
 export interface TrackedTimezone {
