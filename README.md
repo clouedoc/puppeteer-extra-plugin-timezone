@@ -64,7 +64,6 @@ We appreciate all contributions.
 What's needed:
 
 - [ ] Get timezone from other fallback iptest websites
-- [ ] Set default timezone on a page basis (when executing `browser.newPage()`)
 
 Done:
 
