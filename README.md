@@ -16,7 +16,7 @@ npm install puppeteer-extra-plugin-timezone
 
 ## Usage
 
-First of all, you have to tell `puppteer-extra` to use the plugin.
+First of all, you have to register the plugin with `puppeteer-extra`.
 
 JavaScript:
 
