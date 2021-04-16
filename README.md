@@ -67,6 +67,7 @@ What's needed:
 
 Done:
 
+- [x] Fix memory leak (remove timezone informations on browser disconnect)
 - [x] Make it work somehow *(prescience)*
 - [x] Specifying a default fallback timezone *(prescience)*
 - [x] Sticky per-browser timezone (save the timezone for each browser to avoid unnecessary calls to Lumtest)

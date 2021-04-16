@@ -78,6 +78,8 @@ export class TimezonePlugin extends PuppeteerExtraPlugin {
         `Detected timezone (${IP_REFLECTION_URL}): ${this.getTz(browserId)}`,
         this.ctx
       )
+
+      browser.on("disconnected", () => this.ctx.delete(browserId))
     } catch (err) {
       this.debug(`Error getting timezone for ip: ${err.message}`)
       this.debug(err.stack ?? err)

@@ -1,7 +1,8 @@
 import { Browser } from "puppeteer"
 import puppeteer from "puppeteer-extra"
 import { TESTING_PROXY_SERVER } from "./constants"
-import TimezonePlugin from "./plugin"
+import TimezonePlugin, { TimezonePlugin as TimezonePluginType } from "./plugin"
+import { TargetInfoSchema } from "./schemas"
 
 jest.setTimeout(50000)
 
@@ -38,8 +39,11 @@ it("isn't stealth when not using the timezone plugin", async () => {
   await expect(isStealth()).resolves.toBe(false)
 })
 
+let plugin: TimezonePluginType
+plugin = TimezonePlugin()
+puppeteer.use(plugin)
+
 it("emulates the right timezone for the current IP", async () => {
-  puppeteer.use(TimezonePlugin())
   await expect(isStealth()).resolves.toBe(true)
 })
 
@@ -57,4 +61,27 @@ it("emulates the right timezone for multiple browsers concurrently", async () =>
   await expect(isStealth(proxyBrowser)).resolves.toBe(true)
 
   await Promise.all([proxyBrowser.close(), normalBrowser.close()])
+})
+
+async function getBrowserId(browser: Browser) {
+  const browserInfo = TargetInfoSchema.parse(
+    await (await browser.target().createCDPSession()).send(
+      "Target.getTargetInfo"
+    )
+  )
+  return browserInfo.targetInfo.targetId
+}
+
+it("does not keep the cache entry once the browser is closed", async () => {
+  const browser = await puppeteer.launch({
+    headless: true
+  })
+
+  const browserId = await getBrowserId(browser)
+
+  expect(plugin.ctx.get(browserId)).toBeDefined()
+
+  await browser.close()
+
+  expect(plugin.ctx.get(browserId)).toBeUndefined()
 })
