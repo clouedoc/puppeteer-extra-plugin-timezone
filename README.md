@@ -63,6 +63,7 @@ We appreciate all contributions.
 
 What's needed:
 
+- [ ] `page.authenticate` support
 - [ ] Get timezone from other fallback iptest websites
 
 Done:
