@@ -21,7 +21,7 @@ First of all, you have to register the plugin with `puppeteer-extra`.
 JavaScript:
 
 ```js
-puppeteer.use(require('puppeteer-extra-plugin-timezone')())
+puppeteer.use(require('puppeteer-extra-plugin-timezone').default())
 ```
 
 TypeScript:
